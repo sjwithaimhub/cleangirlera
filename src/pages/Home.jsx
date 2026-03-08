@@ -179,10 +179,10 @@ export default function Home() {
           <div className="flex items-start justify-between gap-3">
             <div className="relative">
                 <CuteBow className="absolute -top-3 -left-3 md:-top-4 md:-left-4 opacity-80" />
-                <h1 className="text-4xl md:text-6xl lg:text-7xl bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 bg-clip-text text-transparent drop-shadow-sm italic pb-2" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}>
+                <h1 className="text-4xl md:text-6xl lg:text-7xl bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 bg-clip-text text-transparent drop-shadow-sm pb-2" style={{ fontFamily: "'Bodoni Moda', Georgia, serif", fontWeight: 400 }}> 
                   Cleaning Roster
                 </h1>
-                <style>{`@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&display=swap');`}</style>
+                <style>{`@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;1,400&display=swap');`}</style>
                 <p className="text-pink-400 text-sm md:text-base flex items-center gap-1.5 mt-2">
                   <Sparkles className="w-3 h-3 md:w-4 md:h-4 animate-pulse" />
                   <span className="font-medium italic">Clean Girl Era</span>
