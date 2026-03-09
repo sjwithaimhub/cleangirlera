@@ -1,0 +1,11 @@
+{
+  "name": "Clean Girl Era",
+  "short_name": "CGE",
+  "icons": [
+    { "src": "/favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#fce9f0",
+  "background_color": "#fce9f0"
+}
