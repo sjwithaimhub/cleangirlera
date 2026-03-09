@@ -178,9 +178,9 @@ export default function Home() {
         {/* Header */}
         <div className="**mt-2 md:mt-4 mb-4**">
           <div className="flex items-start justify-between gap-3">
-            <div className="relative">
+            <div className="relative pl-2 md:pl-4 lg:pl-8 xl:pl-12">
                 <CuteBow className="absolute -top-3 -left-3 md:-top-4 md:-left-4 opacity-80" />
-                <h1 className="text-4xl md:text-6xl lg:text-7xl tracking-wide bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 bg-clip-text text-transparent drop-shadow-sm pb-2" style={{ fontFamily: "'Great Vibes', cursive", fontWeight: 400 }}> 
+                <h1 className="text-4xl md:text-6xl lg:text-7xl bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 bg-clip-text text-transparent drop-shadow-sm pb-2" style={{ fontFamily: "'Bodoni Moda', Georgia, serif", fontWeight: 400 }}> 
                   Cleaning Roster
                 </h1>
                 <style>{`@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;1,400&family=Great+Vibes&display=swap');`}</style>
