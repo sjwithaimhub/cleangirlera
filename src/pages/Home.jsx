@@ -174,13 +174,13 @@ export default function Home() {
       <div className="absolute top-40 -right-20 w-72 h-72 bg-purple-200/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-20 left-1/3 w-56 h-56 bg-rose-200/20 rounded-full blur-3xl pointer-events-none" />
       
-      <div className="max-w-5xl mx-auto p-3 md:p-8 relative">
+      <div className="max-w-5xl mx-auto px-3 pt-4 pb-10 md:px-8 md:pt-8 md:pb-16 relative">
         {/* Header */}
-        <div className="mb-4">
+        <div className="**mt-2 md:mt-4 mb-4**">
           <div className="flex items-start justify-between gap-3">
             <div className="relative">
                 <CuteBow className="absolute -top-3 -left-3 md:-top-4 md:-left-4 opacity-80" />
-                <h1 className="text-4xl md:text-6xl lg:text-7xl bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 bg-clip-text text-transparent drop-shadow-sm pb-2" style={{ fontFamily: "'Bodoni Moda', Georgia, serif", fontWeight: 400 }}> 
+                <h1 className="text-4xl md:text-6xl lg:text-7xl tracking-wide bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 bg-clip-text text-transparent drop-shadow-sm pb-2" style={{ fontFamily: "'Great Vibes', cursive", fontWeight: 400 }}> 
                   Cleaning Roster
                 </h1>
                 <style>{`@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;1,400&family=Great+Vibes&display=swap');`}</style>
