@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { base44 } from '@/api/base44Client';
+import { supabase } from '@/api/base44Client';
+import { Housemate, Chore, Leave, Nudge, ChoreCompletion } from '@/api/entities';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -37,38 +38,38 @@ export default function Home() {
 
   const { data: housemates = [] } = useQuery({
     queryKey: ['housemates'],
-    queryFn: () => base44.entities.Housemate.list()
+    queryFn: () => Housemate.list()
   });
 
   const { data: chores = [] } = useQuery({
     queryKey: ['chores'],
-    queryFn: () => base44.entities.Chore.list()
+    queryFn: () => Chore.list()
   });
 
   const { data: leaves = [] } = useQuery({
     queryKey: ['leaves'],
-    queryFn: () => base44.entities.Leave.list()
+    queryFn: () => Leave.list()
   });
 
   const { data: nudges = [], refetch: refetchNudges } = useQuery({
     queryKey: ['nudges'],
-    queryFn: () => base44.entities.Nudge.list('-created_date', 50)
+    queryFn: () => Nudge.list('-created_date', 50)
   });
 
   const { data: completions = [] } = useQuery({
     queryKey: ['completions'],
-    queryFn: () => base44.entities.ChoreCompletion.list()
+    queryFn: () => ChoreCompletion.list()
   });
 
   const { data: currentUser } = useQuery({
     queryKey: ['currentUser'],
-    queryFn: () => base44.auth.me()
+    queryFn: () => User.me()
   });
 
   const currentHousemate = housemates.find(h => h.email?.toLowerCase() === currentUser?.email?.toLowerCase());
 
   const createChore = useMutation({
-    mutationFn: (data) => base44.entities.Chore.create(data),
+    mutationFn: (data) => Chore.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries(['chores']);
       setChoreModal({ open: false, chore: null });
@@ -76,7 +77,7 @@ export default function Home() {
   });
 
   const updateChore = useMutation({
-        mutationFn: ({ id, data }) => base44.entities.Chore.update(id, data),
+        mutationFn: ({ id, data }) => Chore.update(id, data),
         onSuccess: () => {
           queryClient.invalidateQueries(['chores']);
           setChoreModal({ open: false, chore: null });
@@ -84,17 +85,17 @@ export default function Home() {
       });
 
       const applyEndDateToAllChores = async (endDate) => {
-        await Promise.all(chores.map(c => base44.entities.Chore.update(c.id, { end_date: endDate })));
+        await Promise.all(chores.map(c => Chore.update(c.id, { end_date: endDate })));
         queryClient.invalidateQueries(['chores']);
       };
 
   const deleteChore = useMutation({
-    mutationFn: (id) => base44.entities.Chore.delete(id),
+    mutationFn: (id) => Chore.delete(id),
     onSuccess: () => queryClient.invalidateQueries(['chores'])
   });
 
   const createLeave = useMutation({
-    mutationFn: (data) => base44.entities.Leave.create(data),
+    mutationFn: (data) => Leave.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries(['leaves']);
       setLeaveModal({ open: false, leave: null });
@@ -102,7 +103,7 @@ export default function Home() {
   });
 
   const updateLeave = useMutation({
-    mutationFn: ({ id, data }) => base44.entities.Leave.update(id, data),
+    mutationFn: ({ id, data }) => Leave.update(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries(['leaves']);
       setLeaveModal({ open: false, leave: null });
@@ -110,12 +111,12 @@ export default function Home() {
   });
 
   const deleteLeave = useMutation({
-    mutationFn: (id) => base44.entities.Leave.delete(id),
+    mutationFn: (id) => Leave.delete(id),
     onSuccess: () => queryClient.invalidateQueries(['leaves'])
   });
 
   const createHousemate = useMutation({
-    mutationFn: (data) => base44.entities.Housemate.create(data),
+    mutationFn: (data) => Housemate.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries(['housemates']);
       setHousemateModal({ open: false, housemate: null });
@@ -123,7 +124,7 @@ export default function Home() {
   });
 
   const updateHousemate = useMutation({
-    mutationFn: ({ id, data }) => base44.entities.Housemate.update(id, data),
+    mutationFn: ({ id, data }) => Housemate.update(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries(['housemates']);
       setHousemateModal({ open: false, housemate: null });
@@ -131,12 +132,12 @@ export default function Home() {
   });
 
   const deleteHousemate = useMutation({
-    mutationFn: (id) => base44.entities.Housemate.delete(id),
+    mutationFn: (id) => Housemate.delete(id),
     onSuccess: () => queryClient.invalidateQueries(['housemates'])
   });
 
   const completeChore = useMutation({
-    mutationFn: (data) => base44.entities.ChoreCompletion.create(data),
+    mutationFn: (data) => ChoreCompletion.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries(['completions']);
       setShowConfetti(false);
@@ -145,7 +146,7 @@ export default function Home() {
   });
 
   const uncompleteChore = useMutation({
-    mutationFn: (id) => base44.entities.ChoreCompletion.delete(id),
+    mutationFn: (id) => ChoreCompletion.delete(id),
     onSuccess: () => queryClient.invalidateQueries(['completions'])
   });
 

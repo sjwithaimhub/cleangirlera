@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { base44 } from '@/api/base44Client';
+import { supabase } from '@/api/base44Client';
 import { Upload, Loader2, Palmtree, Pencil, Trash2 } from 'lucide-react';
 import { format } from 'date-fns';
 import AvatarSelector, { AvatarDisplay } from '../dashboard/AvatarSelector';
@@ -69,7 +69,8 @@ export default function HousemateModal({ open, onClose, onSave, housemate, usedC
     if (!file) return;
     
     setUploading(true);
-    const { file_url } = await base44.integrations.Core.UploadFile({ file });
+    const { data, error } = await supabase.storage.from("avatars").upload(`photos/${Date.now()}`, file, { upsert: true });
+    const file_url = data ? supabase.storage.from("avatars").getPublicUrl(data.path).data.publicUrl : null;
     setFormData({ ...formData, photo_url: file_url, avatar_id: '' });
     setUploading(false);
   };

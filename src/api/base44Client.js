@@ -1,8 +1,6 @@
-import { createClient } from '@base44/sdk';
-// import { getAccessToken } from '@base44/sdk/utils/auth-utils';
+import { createClient } from '@supabase/supabase-js';
 
-// Create a client with authentication required
-export const base44 = createClient({
-  appId: "692c57d165af694d6fbeefde", 
-  requiresAuth: true // Ensure authentication is required for all operations
-});
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
