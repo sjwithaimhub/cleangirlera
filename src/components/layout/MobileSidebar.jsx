@@ -17,7 +17,7 @@ export default function MobileSidebar({ onAddLeave, onAddChore, onAddUser }) {
         <Button 
           size="icon" 
           variant="outline" 
-          className="md:hidden border-pink-200 text-pink-600"
+          className="border-pink-200 text-pink-600"
         >
           <Menu className="w-5 h-5" />
         </Button>
